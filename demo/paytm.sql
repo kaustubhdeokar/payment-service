@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- MySQL dump 10.13  Distrib 8.0.41, for Linux (x86_64)
 --
 -- Host: localhost    Database: paytm
@@ -122,3 +123,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2025-04-22 22:26:54
+=======
+kalesh
+>>>>>>> refs/rewritten/main-2

@@ -57,24 +57,6 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public void creditBalanceUser(BankDto bankDto) {
-        User user = getUserIfPresent(bankDto.getUsername());
-        user.getBank().setBalance(user.getBank().getBalance() +
-                Long.parseLong(bankDto.getAddBalance()));
-        userRepo.save(user);
-    }
-
-    public void debitBalanceUser(BankDto bankDto) {
-        User user = getUserIfPresent(bankDto.getUsername());
-        if(user.getBank().getBalance() < Long.parseLong(bankDto.getAddBalance())){
-            throw new CustomException("Insufficient balance");
-        }
-        user.getBank().setBalance(user.getBank().getBalance() -
-                Long.parseLong(bankDto.getAddBalance()));
-        userRepo.save(user);
-    }
-
-
     public AuthenticationResponse loginUser(String username, String password) {
         try {
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -94,14 +76,17 @@ public class UserService {
         }
     }
 
-
-    private User getUserIfPresent(String username) {
+    User getUserIfPresent(String username) {
         Optional<User> user = userRepo.findByUsername(username);
         if (user.isPresent()) {
             return user.get();
         }
         throw new CustomException(HttpStatus.BAD_REQUEST,
                 String.format("Username %s does not exist in the database", username));
+    }
+
+    public void saveUser(User user){
+        userRepo.save(user);
     }
 
 }

@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BankDto {
     private String username;
-    private String addBalance;
+    private Long addBalance;
 }
